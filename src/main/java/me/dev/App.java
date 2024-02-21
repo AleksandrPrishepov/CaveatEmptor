@@ -25,21 +25,22 @@ public class App {
         EntityManagerFactory emf =
                 Persistence.createEntityManagerFactory("CaveatEmptor");
         EntityManager em = emf.createEntityManager();
-//        em.getTransaction().begin();
-//        Item item = new Item();
-//        item.setName("fausfffffffffffff");
-//        em.persist(item);
-//        em.getTransaction().commit();
-//        List<Item> messages =
-//                em.createQuery("select m from Item m").getResultList();
-//        System.out.println(messages);
-//        em.close();
-        Metamodel mm = (Metamodel) em.getMetamodel();
-        Set<ManagedType<?>> managedTypes = mm.getManagedTypes();
-        ManagedType itemType = managedTypes.iterator().next();
-        SingularAttribute na = itemType.getSingularAttribute("name");
-        System.out.println(na.getJavaType());
-        System.out.println(na.isOptional());
+//        Item i = em.find(Item.class, 1L);
+        em.getTransaction().begin();
+        Item item = new Item();
+        item.setName("fausf");
+        em.persist(item);
+        em.getTransaction().commit();
+        List<Item> messages =
+                em.createQuery("select m from Item m").getResultList();
+        System.out.println(messages);
+        em.close();
+//        Metamodel mm = (Metamodel) em.getMetamodel();
+//        Set<ManagedType<?>> managedTypes = mm.getManagedTypes();
+//        ManagedType itemType = managedTypes.iterator().next();
+//        SingularAttribute na = itemType.getSingularAttribute("name");
+//        System.out.println(na.getJavaType());
+//        System.out.println(na.isOptional());
 
     }
 }

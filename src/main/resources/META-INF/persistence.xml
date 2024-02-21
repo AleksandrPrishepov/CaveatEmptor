@@ -17,6 +17,8 @@ http://xmlns.jcp.org/xml/ns/persistence_2_1.xsd">
             <property
                     name="javax.persistence.schema-generation.database.action"
                     value="drop-and-create"/>
+            <property name="hibernate.physical_naming_strategy"
+                      value="me.dev.shared.CENamingStrategy"/>
             <!--            <property name="hbm2ddl.auto" value="create"/>-->
         </properties>
 

@@ -6,17 +6,21 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
+@Table(name = "ITEM")
 @Setter
 @Getter
 @ToString
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(length = 5)
+    @GeneratedValue(generator = "custom")
+//    @GenericGenerator(name="ID_GENERATO", strategy = "increment")
+
+    private long id;
+    @Column(length = 5, name = "MyName")
     @Size(min = 2,
          max = 8)
     private String name;
