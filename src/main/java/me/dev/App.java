@@ -1,21 +1,15 @@
 package me.dev;
 
 
+import me.dev.entity.Adress;
 import me.dev.entity.Item;
-import org.hibernate.Metamodel;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.metamodel.ManagedType;
-import javax.persistence.metamodel.SingularAttribute;
-import java.security.Signature;
+import javax.persistence.Query;
 import java.util.List;
-import java.util.Set;
 
 
 public class App {
@@ -25,10 +19,15 @@ public class App {
         EntityManagerFactory emf =
                 Persistence.createEntityManagerFactory("CaveatEmptor");
         EntityManager em = emf.createEntityManager();
-//        Item i = em.find(Item.class, 1L);
+//        Session session = em.unwrap(Session.class);
         em.getTransaction().begin();
+
         Item item = new Item();
+
         item.setName("fausf");
+        item.setFamily("Smith");
+        item.setAdress(new Adress("Truda","zipcod","VTB"));
+        item.setBillingAddress(new Adress("uui","235","Vitebsk" ));
         em.persist(item);
         em.getTransaction().commit();
         List<Item> messages =
