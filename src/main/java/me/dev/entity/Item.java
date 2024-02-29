@@ -6,6 +6,8 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import me.dev.advenced.MonetaryAmount;
+import me.dev.converter.ZipcodeConverter;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -52,19 +54,27 @@ public class Item {
 
     @Column(name = "date")
     private Date dateoperation = new Date();
-
+    @Convert(converter = ZipcodeConverter.class,
+         attributeName = "zipcode")
     protected Adress adress;
+//    @Convert(converter = ZipcodeConverter.class,
+//            attributeName = "zipcode")
+//    @AttributeOverrides({
+//            @AttributeOverride(name = "street",
+//                    column = @Column(name = "BILLING_STREET")),
+//            @AttributeOverride(name = "zipcode",
+//                    column = @Column(name = "BILLING_ZIPCODE", length = 10)),
+//            @AttributeOverride(name = "city",
+//                    column = @Column(name = "BILLING_CITY"))
+//    })
+//    protected Adress billingAddress;
 
-    @AttributeOverrides({
-            @AttributeOverride(name = "street",
-                    column = @Column(name = "BILLING_STREET")),
-            @AttributeOverride(name = "zipcode",
-                    column = @Column(name = "BILLING_ZIPCODE", length = 5)),
-            @AttributeOverride(name = "city",
-                    column = @Column(name = "BILLING_CITY"))
-    })
+
+    @AttributeOverride(name = "street",
+                    column = @Column(name = "BILLING_STREET")
+    )
     protected Adress billingAddress;
 
-
-    private byte[] pop = {5,6,89};
+    @Column(name = "PRICE")
+    protected MonetaryAmount priceNow;
 }

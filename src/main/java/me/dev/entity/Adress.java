@@ -20,7 +20,7 @@ public class Adress {
     protected String street;
     @NotNull
     @Column(nullable = false)
-    protected String zipcode;
+    protected Zipcode zipcode;
     @NotNull
     @Column(nullable = false)
     protected  String city;
